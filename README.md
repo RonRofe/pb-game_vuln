@@ -1,3 +1,3 @@
 # PB-Game vulnerability exploitation
 
-[PBGame.com](http://www.pbgame.com)
+[PB-Game.com](http://www.pb-game.com)
