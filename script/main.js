@@ -1,8 +1,10 @@
-const json2csv = require('json2csv').parse;
+const json2csv = require('json2csv');
 const request = require('request');
 const syncRequest = require('request-promise')
 const fs = require('fs');
 const querystring = require('query-string');
+
+
 
 // Const data
 const token = 'EDC5F8F18073C65EF2CF60F274782DC9';
@@ -73,7 +75,7 @@ const fetch = async () => {
 }
 
 fetch().then(() => {
-    const csv = json2csv(data, { fields: [
+    const csv = json2csv.parse(data, { fields: [
         'uid', 'nickname', 'accounts', 'portrait', 'balance', 'tel_email', 'money', 'zcz', 
         'ztx', 'id_card', 'banknumber', 'bankname', 'busername', 'branch'
     ]});
