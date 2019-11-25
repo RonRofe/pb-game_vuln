@@ -6,8 +6,8 @@ const querystring = require('query-string');
 
 // Const data
 const token = 'EDC5F8F18073C65EF2CF60F274782DC9';
-const start_from_id = 20;
-const stop_on_id = 25;
+const start_from_id = 1;
+const stop_on_id = 2000;
 const estimated_max_user_id = 1280;
 
 const userInfoEndpoint = 'https://www.pb-game.com/admin.php/Home/Member/getUserInfo?token=' + token + '&uid=';
@@ -24,18 +24,33 @@ const fetch = async () => {
         const finalUrl = userInfoEndpoint + uid;
         try {
             const body = await syncRequest({ url: finalUrl, json: true });
-            lastUid = body.data.uid;
-            row = {
-                uid: body.data.uid,
-                nickname: body.data.nickname,
-                accounts: body.data.accounts,
-                portrait: body.data.portrait,
-                balance: body.data.balance,
-                tel_email: body.data.tel_email,
-                money: body.data.money,
-                zcz: body.data.zcz,
-                ztx: body.data.ztx
-            };
+            if(body === undefined || body.data === undefined) {
+                lastUid = undefined;
+                row = {
+                    uid: 'NULL',
+                    nickname: 'NULL',
+                    accounts: 'NULL',
+                    portrait: 'NULL',
+                    balance: 'NULL',
+                    tel_email: 'NULL',
+                    money: 'NULL',
+                    zcz: 'NULL',
+                    ztx: 'NULL'
+                };
+            } else {
+                lastUid = body.data.uid;
+                row = {
+                    uid: body.data.uid || 'NULL',
+                    nickname: body.data.nickname || 'NULL',
+                    accounts: body.data.accounts || 'NULL',
+                    portrait: body.data.portrait || 'NULL',
+                    balance: body.data.balance || 'NULL',
+                    tel_email: body.data.tel_email || 'NULL',
+                    money: body.data.money || 'NULL',
+                    zcz: body.data.zcz || 'NULL',
+                    ztx: body.data.ztx || 'NULL'
+                };
+            }
         } catch(e) {
             console.log(e);
         }
@@ -59,11 +74,19 @@ const fetch = async () => {
                 body: formData,
                 json: true
             });
-            row.id_card = body.data.id_card;
-            row.banknumber = body.data.banknumber;
-            row.bankname = body.data.bankname;
-            row.busername = body.data.busername;
-            row.branch = body.data.branch;
+            if(body === undefined || body.data === undefined) {
+                row.id_card = 'NULL';
+                row.banknumber = 'NULL';
+                row.bankname = 'NULL';
+                row.busername = 'NULL';
+                row.branch = 'NULL';
+            } else {
+                row.id_card = body.data.id_card || 'NULL';
+                row.banknumber = body.data.banknumber || 'NULL';
+                row.bankname = body.data.bankname || 'NULL';
+                row.busername = body.data.busername || 'NULL';
+                row.branch = body.data.branch || 'NULL';
+            }
         } catch(e) {
             console.log(e);
         }
