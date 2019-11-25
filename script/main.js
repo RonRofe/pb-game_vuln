@@ -17,7 +17,7 @@ const userProfileInfoEndpoint = 'https://www.pb-game.com/admin.php/Home/User/get
 
 const fetch = async () => {
     let lastUid = 0;
-    for(let uid = 20; ((lastUid !== undefined || uid < estimated_max_user_id) && uid < stop_on_id); uid++) {
+    for(let uid = start_from_id; ((lastUid !== undefined || uid < estimated_max_user_id) && uid < stop_on_id); uid++) {
         let row = {};
 
         // First API endpoint
