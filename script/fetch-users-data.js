@@ -1,10 +1,8 @@
 const json2csv = require('json2csv');
 const request = require('request');
-const syncRequest = require('request-promise')
+const syncRequest = require('request-promise');
 const fs = require('fs');
 const querystring = require('query-string');
-
-
 
 // Const data
 const token = 'EDC5F8F18073C65EF2CF60F274782DC9';
@@ -12,10 +10,10 @@ const start_from_id = 20;
 const stop_on_id = 25;
 const estimated_max_user_id = 1280;
 
-const data = [];
-
 const userInfoEndpoint = 'https://www.pb-game.com/admin.php/Home/Member/getUserInfo?token=' + token + '&uid=';
 const userProfileInfoEndpoint = 'https://www.pb-game.com/admin.php/Home/User/getUserProfileInfo';
+
+const data = [];
 
 const fetch = async () => {
     let lastUid = 0;
