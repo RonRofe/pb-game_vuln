@@ -6,10 +6,10 @@ const querystring = require('query-string');
 
 // Const data
 const uri = 'https://www.pb-game.com/admin.php/Home/User/editUserProfileInfo';
-const uid = 1125;
-const token = 'EDC5F8F18073C65EF2CF60F274782DC9';
+// const uid = 1280;
+// const token = 'EDC5F8F18073C65EF2CF60F274782DC9';
 
-const edit = async (uid, token, { nickname, id_card, banknumber, bankname, busername }) => {
+const editUser = async (uid, token = token, { nickname, id_card, banknumber, bankname, busername }) => {
     const form = {
         uid,
         token,
@@ -33,16 +33,18 @@ const edit = async (uid, token, { nickname, id_card, banknumber, bankname, buser
             body: formData,
             json: true
         });
-        console.log(res);
+        console.log({ ...res, uid });
     } catch(e) {
         console.log(e);
     }
 }
 
-edit(uid, token, {
-        nickname: 'Test Nickname',
-        id_card: 123456789,
-        banknumber: 123456789,
-        bankname: 'Test Bankname',
-        busername: 'Bank Username'
-});
+// editUser(uid, token, {
+//     nickname: 'Test Nicknamessss',
+//     id_card: 123456789,
+//     banknumber: 123456789,
+//     bankname: 'Test Bankname',
+//     busername: 'Bank Username'
+// });
+
+module.exports = { editUser };

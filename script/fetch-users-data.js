@@ -6,8 +6,8 @@ const querystring = require('query-string');
 
 // Const data
 const token = 'EDC5F8F18073C65EF2CF60F274782DC9';
-const start_from_id = 1;
-const stop_on_id = 2000;
+const start_from_id = 90;
+const stop_on_id = 100;
 const estimated_max_user_id = 1280;
 
 const userInfoEndpoint = 'https://www.pb-game.com/admin.php/Home/Member/getUserInfo?token=' + token + '&uid=';
